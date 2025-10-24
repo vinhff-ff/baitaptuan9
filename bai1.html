@@ -16,7 +16,10 @@
        a.push(Number(c));
     }
     for (let i = 0; i < a.length; i++){
-        document.write(a[i] + '-')
+        document.write(a[i])
+        if (a[i] < a.length ){
+            document.write(" - ")
+        }
     }
     var sum = 0
     for (let i = 0; i < a.length; i++){

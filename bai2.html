@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="display: flex; flex-direction: column; gap: 10px;"> 
+    <button onclick="nhapHang()">nhap</button>
+    <button onclick="tinhTong()">tinh tong</button>
+    <div style="display: flex; gap: 10px;">
+        <input type="text" placeholder="Tìm hàng" id="timKiem">
+        <button onclick="timKiemHang()">Tìm</button>
+    </div>
+    <button onclick="maxPrice()">Sản phẩm có giá cao nhất</button>
+</body>
+<script>
+    var a = []
+    function nhapHang() {
+        var n = prompt('Nhap so luong hang hoa: ')
+        for (let i = 0; i < Number(n); i++) {
+            let dsProduct = {
+                id: i+1,
+                namePro: "",
+                price : 0,
+                quantity: 0
+            }
+            let ten = prompt(`Ten mat hang ${i}`)
+            let gia = prompt(`Gia ${i}`)
+            let quantity = prompt(`So luong ${i}`)
+            dsProduct.namePro = ten
+            dsProduct.price = Number(gia)
+            dsProduct.quantity = Number(quantity)
+            a.push(dsProduct)
+        }
+    }
+
+    var sum = 0;
+    function tinhTong() {
+        for (let i = 0; i < a.length; i++) {
+            sum += a[i].price * a[i].quantity
+        }
+        document.write(sum)
+    }
+
+    function timKiemHang (){
+        const search = document.getElementById('timKiem').value;
+        for (let i = 0; i < a.length; i++){
+            if (search === a[i].namePro){
+                document.write(
+                    a[i].id,
+                    a[i].namePro,
+                    a[i].price,
+                    a[i].quantity
+                )
+            }
+        }
+        
+    }
+
+    function maxPrice (){
+        var maxPrice = a[0].price;
+        for (let i = 0; i < n; i++){
+            if (maxPrice <= a[i].price){
+                maxPrice = a[i].price
+            }
+        }
+        document.write(maxPrice)
+    }
+
+</script>
+
+</html>

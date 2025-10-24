@@ -14,7 +14,8 @@
         <input type="text" placeholder="Tìm hàng" id="timKiem">
         <button onclick="timKiemHang()">Tìm</button>
     </div>
-    <button onclick="maxPrice()">Sản phẩm có giá cao nhất</button>
+    <button onclick="maxPrices()">Sản phẩm có giá cao nhất</button>
+    <button class="sapXepTang" onclick="SapXep()">SapXep</button>
 </body>
 <script>
     var a = []
@@ -60,14 +61,40 @@
         
     }
 
-    function maxPrice (){
-        var maxPrice = a[0].price;
-        for (let i = 0; i < n; i++){
+    function maxPrices (){
+        let maxPrice = a[0].price;
+        let viTri = 0;
+        for (let i = 0; i < a.length; i++){
             if (maxPrice <= a[i].price){
                 maxPrice = a[i].price
+                viTri = i
             }
         }
-        document.write(maxPrice)
+        document.write(
+            a[viTri].id,
+            a[viTri].namePro,
+            a[viTri].gia,
+            a[viTri].quantity
+        )
+    }
+
+    function SapXep (){
+        for (let i = 0; i < a.length; i++){
+            for (let j = 0; j < a.length - i - 1; j++){
+                if (a[j].price > a[j+1].price){
+                    let temp = a[j].price
+                    a[j].price = a[j+1].price
+                    a[j+1].price = temp
+                }
+            }
+        }
+        for (let i = 0; i < a.length; i++){
+            document.write(a[i].id)
+            document.write(a[i].namePro)
+            document.write(a[i].price)
+            document.write(a[i].quantity)
+            document.write('<br/>')
+        }
     }
 
 </script>
